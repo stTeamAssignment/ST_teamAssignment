@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace STAssign1
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            var item = GetObject();
 
-            Console.WriteLine(GetValues());
+            Item item = GetObject();
+            item.ItemNumber = 1;
+            item.Description = "Phone";
+            item.Weight = 10;
+            item.UnitOfMeasure = Item.Measures.EACH;
+
+            Console.WriteLine(PrintOutItem(item));
 
             Console.ReadKey();
         }
@@ -22,23 +27,10 @@ namespace STAssign1
             var item = new Item();
             return item;
         }
-
-        public static string GetValues()
+        public static string PrintOutItem(Item item)
         {
-            string UnitofMeasure = "";
-
-            var item = GetObject();
-            item.ItemNumber = 1;
-            item.Description = "Phone";
-            item.Weight = 10;
-
-            foreach (string str in Enum.GetNames(typeof(Item.UnitofMeasure)))
-            {
-                UnitofMeasure = UnitofMeasure + str + "\n";
-            }
-
-            string values = "Item Number: " + item.ItemNumber + "\n" + "Description: " + item.Description + "\n" + 
-                "Unit of Measure: " + UnitofMeasure + "Weight: " + item.Weight;
+            string values = "Item Number: " + item.ItemNumber + "\n" + "Description: " + item.Description + "\n" +
+                "Unit of Measure: " + item.UnitOfMeasure + "\nWeight: " + item.Weight;
             return values;
         }
     }
